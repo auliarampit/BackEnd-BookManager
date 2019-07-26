@@ -5,22 +5,34 @@ const app = express()
 const bodyParser = require('body-parser')
 const port = process.env.SERVER_PORT || 5000
 const cors = require('cors');
+const xssFilter = require('x-xss-protection')
+const logger = require('morgan')
 
 const nameRoute = require('./src/route/route')
+const routePinjam = require('./src/route/pinjam')
+const loginRoute =require('./src/route/login')
 
-var whitelist = ['http://192.168.6.110', 'm']
-var corsOptions = {
-  origin: function (origin, callback) {
-    if (whitelist.indexOf(origin) !== 100) {
-      callback(null, true)
-    } else {
-      callback(new Error('Not allowed by CORS'))
-    }
+var whitelist = ['http://192.168.6.104', 'm']
+const corsOptions = (req, callback) => {
+  console.log(req.header("Origin"))
+  if (whitelist.indexOf(req.header('Origin') !== -1)){
+    console.log('Succes')
+    return callback(null, {
+      origin: true
+    })
+  } else {
+    console.log('Failed')
+    return callback(null, {
+      origin: false
+    })
   }
 }
 
 // Then pass them to cors:
 app.use(cors(corsOptions));
+// app.options('*', cors(corsOptions))
+app.use(xssFilter())
+app.use(logger('dev'))
 
 
 app.listen(port, () => {
@@ -31,3 +43,5 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 
 app.use('/', nameRoute)
+app.use('/Pinjam', routePinjam)
+app.use('/login', loginRoute)

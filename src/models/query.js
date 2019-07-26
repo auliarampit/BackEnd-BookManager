@@ -6,9 +6,8 @@ module.exports = {
       const keyword = `%${name}%`
       const keyword2 = `%${category}%`
 
-      conn.query(`SELECT idBook,image, nameBook, writerBook, namaCategory,tglPinjam, tglKembali, location
-                FROM book INNER JOIN category USING(idCategory)
-                LEFT JOIN pinjam USING(idBook) WHERE nameBook LIKE ? or idCategory LIKE ?`,
+      conn.query(`SELECT idBook,image, nameBook,update_at, description, writerBook,idCategory, namaCategory,location, status
+                FROM book INNER JOIN category USING(idCategory) WHERE nameBook LIKE ? or idCategory LIKE ?`,
         [keyword, keyword2], (err, result) => {
           if (!err) {
             resolve(result)
@@ -33,13 +32,25 @@ module.exports = {
   patchBook: (idBook, data) => {
     return new Promise((resolve, reject) => {
       conn.query(`UPDATE book SET ? WHERE idBook = ?`,
-        [idBook, data], (err, result) => {
+        [data, idBook], (err, result) => {
           if (!err) {
             resolve(result)
           } else {
             reject(new Error(err))
           }
         })
+    })
+  },
+  deleteBook: (idBook) => {
+    return new Promise((resolve,reject) => {
+      conn.query(`DELETE from book WHERE idBook = ?`,
+      idBook, (err, result) => {
+        if (!err) {
+          resolve(result)
+        } else {
+          reject(new Error(err))
+        }
+      })
     })
   }
 }
