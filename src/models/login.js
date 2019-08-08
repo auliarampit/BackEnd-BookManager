@@ -16,7 +16,7 @@ module.exports = {
     },
     getByEmail: (email) => {
         return new Promise((resolve, reject) => {
-            conn.query(`SELECT iduser, email, fullName, create_at, update_at, salt, password FROM users WHERE email = ?`,email, (err, result) => {
+            conn.query(`SELECT iduser,image, idCard , email, fullName, create_at, update_at, salt, password FROM users WHERE email = ?`,email, (err, result) => {
                 if (!err) {
                     resolve(result)
                 } else {

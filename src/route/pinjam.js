@@ -6,7 +6,8 @@ const pinjamController = require('../controllers/pinjam')
 Route
     
     .get('/:idBook', pinjamController.getPinjam)
+    .get('/', pinjamController.HistoryPinjam)
     .post('/post', pinjamController.postPinjam)
-    .patch('/:idPinjam', pinjamController.patchPinjam)
+    .patch('/:idBook', pinjamController.patchPinjam)
 
 module.exports = Route

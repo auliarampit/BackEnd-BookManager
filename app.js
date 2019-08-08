@@ -7,6 +7,7 @@ const port = process.env.SERVER_PORT || 5000
 const cors = require('cors');
 const xssFilter = require('x-xss-protection')
 const logger = require('morgan')
+const path = require('path')
 
 const nameRoute = require('./src/route/route')
 const routePinjam = require('./src/route/pinjam')
@@ -33,6 +34,7 @@ app.use(cors(corsOptions));
 // app.options('*', cors(corsOptions))
 app.use(xssFilter())
 app.use(logger('dev'))
+app.use('/upload', express.static('upload'));
 
 
 app.listen(port, () => {

@@ -6,6 +6,7 @@ module.exports = {
     return res.json('Hello guyss!!')
   },
   getBook: (req, res) => {
+ 
     const name = req.query.nameBook || ''
     const category = req.query.category || ''
 
@@ -19,12 +20,28 @@ module.exports = {
         console.log(error)
       })
   },
+
+  getBookById: (req, res) => {
+    const idBook = req.params.idBook || ''
+
+    model.getBookById(idBook)
+      .then((resultBook) => {
+        // console.log(resultBook)
+        // const result = resultBook
+        res.json(resultBook)
+      })
+      .catch((error) => {
+        console.log(error)
+      })
+  },
+
   postBook: (req, res) => {
+    console.log(req.body,'dadadadad')
     const data = {
       nameBook: req.body.name,
       idCategory: req.body.idCategory,
       writerBook: req.body.writer,
-      image: req.body.image,
+      image: req.body.image = 'http://localhost:8082/upload/' + req.file.filename,
       location: req.body.location,
       description: req.body.description,
       created_at: new Date(),

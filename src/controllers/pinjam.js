@@ -14,7 +14,21 @@ module.exports = {
       })
   },
 
+  HistoryPinjam: (req, res) => {
+    const idCard = req.query.idCard || ''
+
+    model.HistoryPinjam(idCard)
+      .then((resultBook) => {
+        // const result = resultBook
+        res.json(resultBook)
+      })
+      .catch((error) => {
+        console.log(error)
+      })
+  },
+
     postPinjam: (req, res) => {
+      console.log(req.body)
         const data = {
             idBook: req.body.idBook,
             idCard: req.body.idCard,
@@ -32,7 +46,7 @@ module.exports = {
 
       patchPinjam: (req, res) => {
         const idPinjam = parseInt(req.params.idPinjam) 
-        const idBook = parseInt(req.body.idBook)
+        const idBook = parseInt(req.params.idBook)
         const data = {
             tglKembali: new Date(),
         }
@@ -40,7 +54,7 @@ module.exports = {
         model.patchPinjam(data, idPinjam, idBook)
           .then((resultPinjam) => {
             
-            res.json({...data, idPinjam:idBook})
+            res.json({...data, idPinjam:idPinjam})
           })
           .catch((error) => {
             console.log(error)

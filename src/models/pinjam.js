@@ -15,6 +15,20 @@ module.exports = {
     })
   },
 
+  HistoryPinjam: (idCard) => {
+    return new Promise((resolve, reject) => {
+
+      conn.query(`SELECT * FROM pinjam INNER JOIN book ON book.idBook = pinjam.idBook WHERE idCard = ? `,
+        idCard, (err, result) => {
+          if (!err) {
+            resolve(result)
+          } else {
+            reject(new Error(err))
+          }
+        })
+    })
+  },
+
     postPinjam: (data) => {
         return new Promise((resolve, reject) => {
           conn.query(`INSERT INTO pinjam SET ?`, data, (err, result) => {
@@ -35,8 +49,10 @@ module.exports = {
       },
 
       patchPinjam: (data, idPinjam, idBook) => {
+        console.log(idBook);
+        
         return new Promise((resolve, reject) => {
-          conn.query(`UPDATE pinjam SET ? WHERE idPeminjam = ?`, [data, idPinjam], (err, result) => {
+          conn.query(`UPDATE pinjam SET ? WHERE idBook = ? AND tglKembali is null`, [data, idBook], (err, result) => {
               conn.query('UPDATE book SET status = ? WHERE idBook = ?', [0, idBook], (error, resultt) => {
                 if (!err) {
                     resolve(resultt)

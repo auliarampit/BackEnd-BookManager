@@ -1,14 +1,31 @@
 const conn = require('../config/db')
 
 module.exports = {
-  getBook: (name, category) => {
+  getBook: (idBook,name, category) => {
     return new Promise((resolve, reject) => {
-      const keyword = `%${name}%`
+      const keyword = `${idBook}`
+      const keyword1 = `%${name}%`
       const keyword2 = `%${category}%`
 
       conn.query(`SELECT idBook,image, nameBook,update_at, description, writerBook,idCategory, namaCategory,location, status
-                FROM book INNER JOIN category USING(idCategory) WHERE nameBook LIKE ? or idCategory LIKE ?`,
-        [keyword, keyword2], (err, result) => {
+                FROM book INNER JOIN category USING(idCategory) WHERE idBook = ? or nameBook LIKE ? or idCategory LIKE ? `,
+        [keyword, keyword1, keyword2], (err, result) => {
+          if (!err) {
+            resolve(result)
+          } else {
+            reject(new Error(err))
+          }
+        })
+    })
+  },
+
+  getBookById: (idBook) => {
+    return new Promise((resolve, reject) => {
+      const keyword = `${idBook}`
+
+      conn.query(`SELECT idBook,image, nameBook,update_at, description, writerBook,idCategory, namaCategory,location, status
+                FROM book INNER JOIN category USING(idCategory) WHERE idBook = ?`,
+        keyword, (err, result) => {
           if (!err) {
             resolve(result)
           } else {
