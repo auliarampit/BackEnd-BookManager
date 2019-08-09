@@ -46,7 +46,7 @@ module.exports = {
             if (usePassword == dataUser.password) {
                 dataUser.token = jwt.sign({
                     iduser: dataUser.iduser
-                }, process.env.SECRET_KEY, { expiresIn: '1h' })
+                }, 'KueAvam', { expiresIn: '1h' })
 
                 delete dataUser.salt
                 delete dataUser.password

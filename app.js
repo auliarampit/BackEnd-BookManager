@@ -13,24 +13,24 @@ const nameRoute = require('./src/route/route')
 const routePinjam = require('./src/route/pinjam')
 const loginRoute =require('./src/route/login')
 
-var whitelist = ['http://192.168.6.104', 'm']
-const corsOptions = (req, callback) => {
-  console.log(req.header("Origin"))
-  if (whitelist.indexOf(req.header('Origin') !== -1)){
-    console.log('Succes')
-    return callback(null, {
-      origin: true
-    })
-  } else {
-    console.log('Failed')
-    return callback(null, {
-      origin: false
-    })
-  }
-}
+// var whitelist = ['http://192.168.6.104', 'm']
+// const corsOptions = (req, callback) => {
+//   console.log(req.header("Origin"))
+//   if (whitelist.indexOf(req.header('Origin') !== -1)){
+//     console.log('Succes')
+//     return callback(null, {
+//       origin: true
+//     })
+//   } else {
+//     console.log('Failed')
+//     return callback(null, {
+//       origin: false
+//     })
+//   }
+// }
 
 // Then pass them to cors:
-app.use(cors(corsOptions));
+// app.use(cors(corsOptions));
 // app.options('*', cors(corsOptions))
 app.use(xssFilter())
 app.use(logger('dev'))
