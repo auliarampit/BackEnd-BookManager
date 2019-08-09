@@ -24,7 +24,7 @@ module.exports = {
     },
 
     accesstoken: (req, res, next) => {
-        const secretKey = process.env.SECRET_KEY
+        const secretKey = 'KueAvam'
         const accessToken = req.token
         const userToken = req.headers['x-control-user']
 

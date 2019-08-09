@@ -3,7 +3,7 @@ require('dotenv').config()
 const express = require('express')
 const app = express()
 const bodyParser = require('body-parser')
-const port = process.env.SERVER_PORT || 5000
+const port = process.env.PORT || 5000
 const cors = require('cors');
 const xssFilter = require('x-xss-protection')
 const logger = require('morgan')
