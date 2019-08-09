@@ -28,7 +28,7 @@ const loginRoute =require('./src/route/login')
 //     })
 //   }
 // }
-
+app.use(cors())
 // Then pass them to cors:
 // app.use(cors(corsOptions));
 // app.options('*', cors(corsOptions))
