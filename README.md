@@ -19,15 +19,3 @@
 5. And the last thing just type `npm start` in your terminal or cmd , 
 
  
-## Screenshot from the app
-<p align='center'>
-  <span>
-   <h2>HOME</h2>
-  <img src="http://imgur.com/IWguoTEl.png" />
-  
-  <h2>ADD</h2>
-  <img src="http://imgur.com/dYWqx6Ol.png" />
-  
-  </span>
-</p>
-
