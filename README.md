@@ -1,6 +1,3 @@
-<h1 align='center'>Simple REST</h1>
-
-
 <p align='center'>
   <img src='https://cdn.shortpixel.ai/client/q_glossy,ret_img,w_609/https://www.restapiexample.com/wp-content/uploads/2017/09/nodejs-mysql-express.png' />
 </p>
