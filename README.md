@@ -15,7 +15,20 @@
 1. Clone or download first this repository with `$git clone https://github.com/auliarampit/backend-bookmanagemen.git`
 2. Open the project in your favorite text editor
 3. Open your terminal or cmd and type `npm install`
-4. Run backend first
+4. Create Environment Variable
+```
+$ touch .env
+$ nano .env
+```
+
+```
+DB_HOST="Your_Host"
+DB_USER="Your_Username"
+DB_PASSWORD="Your_Password"
+DB_NAME="Your_Table"
+
+SERVER_PORT=9999
+```
 5. And the last thing just type `npm start` in your terminal or cmd , 
 
  
