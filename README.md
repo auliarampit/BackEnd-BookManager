@@ -27,5 +27,6 @@ DB_NAME="Your_Table"
 SERVER_PORT=9999
 ```
 5. And the last thing just type `npm start` in your terminal or cmd , 
+6. link postman/endpoint `https://www.getpostman.com/collections/7e856d76b6ca7144ff3a`
 
  
